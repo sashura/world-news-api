@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const validator = require('validator');
 const auth = require('../middlewares/auth');
+const urlValidation = require('../validation/url-validation');
 
 const {
   getUserArticles,
@@ -20,20 +20,10 @@ router.post('/', auth, celebrate({
     source: Joi.string().required(),
     link: Joi.string()
       .required()
-      .custom((value, err) => {
-        if (validator.isURL(value)) {
-          return value;
-        }
-        return err.message('Некорректная ссылка');
-      }),
+      .custom(urlValidation),
     image: Joi.string()
       .required()
-      .custom((value, err) => {
-        if (validator.isURL(value)) {
-          return value;
-        }
-        return err.message('Некорректная ссылка');
-      }),
+      .custom(urlValidation),
   }),
 }), createArticle);
 
