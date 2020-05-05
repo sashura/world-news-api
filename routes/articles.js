@@ -11,7 +11,7 @@ const {
 
 router.get('/', auth, getUserArticles);
 
-router.post('/', celebrate({
+router.post('/', auth, celebrate({
   body: Joi.object().keys({
     keyword: Joi.string().required(),
     title: Joi.string().required(),
@@ -35,12 +35,12 @@ router.post('/', celebrate({
         return err.message('Некорректная ссылка');
       }),
   }),
-}), auth, createArticle);
+}), createArticle);
 
-router.delete('/:articleId', celebrate({
+router.delete('/:articleId', auth, celebrate({
   params: Joi.object().keys({
     articleId: Joi.string().required().alphanum().length(24),
   }),
-}), auth, deleteArticle);
+}), deleteArticle);
 
 module.exports = router;
