@@ -34,10 +34,10 @@ const createArticle = (req, res, next) => {
 
 
 const deleteArticle = (req, res, next) => {
-  Article.findById(req.params.articleId)
+  Article.findById(req.params.articleId).select('+owner')
     .orFail(() => new NotFoundError('Новость не найдена'))
     .then((article) => {
-      if (article.owner !== req.user._id) {
+      if (String(article.owner) !== req.user._id) {
         throw new Forbidden('Нет прав для удаления');
       }
       Article.findByIdAndDelete(req.params.articleId)
