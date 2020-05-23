@@ -25,22 +25,21 @@ mongoose.connect(MONGO_DB, {
 });
 
 app.use(helmet());
-app.use(cors());
 app.use(rateLimit(LIMITER));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.use(requestLogger);
 
-const corsMiddle = ((req, res, next) => {
+/* const corsMiddle = ((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
   res.header('Access-Control-Allow-Credentials', true);
   next();
-});
+});*/
 
-app.use('/', corsMiddle, router);
+app.use('/', router);
 
 
 app.use(errorLogger);
