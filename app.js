@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorsMiddleware = require('./middlewares/errorsmiddleware');
 
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 });
 
 app.use(helmet());
+app.use(cors());
 app.use(rateLimit(LIMITER));
 app.use(cookieParser());
 app.use(bodyParser.json());
