@@ -42,7 +42,6 @@ const login = (req, res, next) => {
         sameSite: 'lax',
       });
     })
-    .then(() => res.status(200).send({ message: 'Авторизация прошла успешно ' }))
     .catch(next);
 };
 
