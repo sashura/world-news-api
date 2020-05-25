@@ -25,7 +25,7 @@ mongoose.connect(MONGO_DB, {
 });
 
 app.use(helmet());
-app.options('*', cors(({ origin: true, credentials: true })));
+app.use(cors());
 app.use(rateLimit(LIMITER));
 app.use(cookieParser());
 app.use(bodyParser.json());
