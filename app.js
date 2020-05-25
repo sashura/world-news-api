@@ -25,14 +25,14 @@ mongoose.connect(MONGO_DB, {
 });
 
 app.use(helmet());
-app.use(cors(({ origin: true, credentials: true })));
+app.options('*', cors(({ origin: true, credentials: true })));
 app.use(rateLimit(LIMITER));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.use(requestLogger);
 
-const allowedCors = [
+/*const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
   'localhost:3000',
@@ -44,6 +44,8 @@ const allowedCors = [
   'https://localhost:8080',
 ];
 
+const corsOptionDelegate =
+
 app.use(function(req, res, next) {
   const { origin } = req.headers;
   if (allowedCors.includes(origin)) {
@@ -52,7 +54,7 @@ app.use(function(req, res, next) {
       res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
   }
   next();
-});
+}); */
 
 app.use('/', router);
 
