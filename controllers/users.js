@@ -41,6 +41,7 @@ const login = (req, res, next) => {
         httpOnly: true,
         sameSite: 'lax',
       });
+      res.send({ token, user: user.name });
     })
     .catch(next);
 };
