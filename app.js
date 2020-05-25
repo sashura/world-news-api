@@ -40,6 +40,8 @@ const allowedCors = [
   'localhost:8081',
   'http://localhost:8081',
   'https://localhost:8081',
+  'http://localhost:8080',
+  'https://localhost:8080',
 ];
 
 app.use(function(req, res, next) {
