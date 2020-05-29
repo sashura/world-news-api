@@ -24,8 +24,9 @@ mongoose.connect(MONGO_DB, {
   useUnifiedTopology: true,
 });
 
+
 app.use(helmet());
-app.use(cors());
+app.use(cors(({ origin: 'http://loclhost:8080', credentials: true })));
 app.use(rateLimit(LIMITER));
 app.use(cookieParser());
 app.use(bodyParser.json());

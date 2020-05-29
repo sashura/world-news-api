@@ -6,7 +6,8 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 
 module.exports = (req, res, next) => {
-  const token = req.cookies.jwt;
+  const { authorization } = req.headers;
+  const token = authorization.replace('Bearer ', '');
   let payload;
 
   try {

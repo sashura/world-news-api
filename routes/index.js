@@ -6,7 +6,12 @@ const articles = require('./articles');
 const wrongPage = require('./wrongPage');
 const authorization = require('./authorization');
 
-router.use('/articles', cors(), articles);
+const corsOptions = {
+  origin: 'http://localhost:8080',
+  optionsSuccessStatus: 204, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+router.use('/articles', cors(corsOptions), articles);
 
 router.use('/users', users);
 
