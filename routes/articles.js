@@ -9,9 +9,9 @@ const {
   deleteArticle,
 } = require('../controllers/articles');
 
-router.get('/', auth, getUserArticles);
+router.get('/articles', auth, getUserArticles);
 
-router.post('/', auth, celebrate({
+router.post('/articles', auth, celebrate({
   body: Joi.object().keys({
     keyword: Joi.string().required(),
     title: Joi.string().required(),
@@ -27,7 +27,7 @@ router.post('/', auth, celebrate({
   }),
 }), createArticle);
 
-router.delete('/:articleId', auth, celebrate({
+router.delete('/articles/:articleId', auth, celebrate({
   params: Joi.object().keys({
     articleId: Joi.string().required().alphanum().length(24),
   }),
