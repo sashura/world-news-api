@@ -11,7 +11,7 @@ const corsOptions = {
   optionsSuccessStatus: 204, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-router.use(cors(corsOptions), articles);
+router.use(articles);
 
 router.use(users);
 
