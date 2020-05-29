@@ -12,7 +12,6 @@ const corsOptions = {
 };
 
 router.use(articles);
-
 router.use(users);
 
 router.use(authorization);
