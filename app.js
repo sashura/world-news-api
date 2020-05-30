@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 
 app.use(requestLogger);
 
-app.use('/', router);
+app.use(router);
 
 
 app.use(errorLogger);
